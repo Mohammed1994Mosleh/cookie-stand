@@ -1,67 +1,6 @@
 'use strict';
 
-// let seattle ={
-// shopName:'seattle',    
-//  minCust:23,
-//  maxCust:65,
-//  avgC:6.3,
-//   purchased:[],
 
-// purchase: function(minCust,maxCust,avgC){
-// for(let i=0;i<14;i++){
-  
-//     this.purchased[i] = (Math.floor(Math.random() * (maxCust - minCust + 1) + minCust))*avgC;
-    
-//     }
-
-// },
-
-// render:function(){
-   
-//     let total=0;
-//     let divEl = document.getElementById('seattle');
-//     let h2El = document.createElement('h2');
-//         divEl.appendChild(h2El);
-//         h2El.textContent = this.shopName;
-
-//         let ulEl = document.createElement('ul');
-//         for (let i = 0; i <= 14; i++) {
-            
-//             let b=6;
-            
-//             console.log(total);
-            
-//             let liEl = document.createElement('li');
-           
-            
-//            if (i<=5){
-            
-//             liEl.textContent =`${b+i}am:${this.purchased[i]}coockies` 
-//              }
-//              else if(i==6){
-
-//                 liEl.textContent =`12pm:${this.purchased[i]}coockies`
-            
-//              }  else if(i>6&&i<14){
-
-//                 liEl.textContent =`${i-6}pm:${this.purchased[i]}coockies`
-
-//              }       else{
-//                 liEl.textContent =`total:${total}cookies`
-                
-//              }
-            
-            
-//             ulEl.appendChild(liEl);
-//             total=total+this.purchased[i];
-//             }
-//             divEl.appendChild(ulEl);
-           
-//         }
-//     }
-
-// seattle.purchase(23,65,6.3);
-// seattle.render()
 let hours=['6am','7am','8am','9am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm'];
 
 let charic=[];
@@ -91,12 +30,7 @@ Stores.prototype.purchase=function(minCust,maxCust,avgC){
     }
 }
 
-// let seattle=new Stores('seattle',12,20,6.5)
-// console.log(seattle);
 
-// let contaIner =document.getElementById('con');
-// let table = document.createElement('table');
-// contaIner.appendChild(table);
 let contaIner =document.getElementById('con');
 let table = document.createElement('table');
 contaIner.appendChild(table);
@@ -256,6 +190,8 @@ toTalpd();
 console.log();
 lasTraw();
 console.log(totalPd);
+console.log(charic);
+
 
 
 
