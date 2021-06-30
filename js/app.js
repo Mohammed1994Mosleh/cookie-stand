@@ -3,7 +3,7 @@
 
 let hours=['6am','7am','8am','9am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm'];
 
-let charic=[];
+let shopss=[];
 let totalPd=[];
 let sum2=0;
 
@@ -14,17 +14,17 @@ function Stores (Name, minCust, maxCust, avgC) {
     this.maxCust=maxCust;
     this.avgC=avgC;
     
-    charic.push(this);
+    shopss.push(this);
     this.purchased=[];
     this.sum=0;
 
     
 }
 
-Stores.prototype.purchase=function(minCust,maxCust,avgC){
-    for(let i=0;i<14;i++){
+Stores.prototype.purchase=function(){
+    for(let i=0;i<hours.length;i++){
   
-    this.purchased[i] = (Math.floor(Math.random() * (maxCust - minCust + 1) + minCust))*avgC;
+    this.purchased.push( Math.floor(Math.random() * (this.maxCust - this.minCust + 1) + this.minCust)*this.avgC);
     this.sum+=this.purchased[i];
 
     }
@@ -42,7 +42,9 @@ for (let i=0;i<hours.length;i++){
 
 sum2=seattle.purchased[i]+tokyo.purchased[i]+dubai.purchased[i]+paris.purchased[i]+lima.purchased[i];
 totalPd.push(sum2);
-// totalPd.push((seattle.purchased[i]+tokyo.purchased[i]+dubai.purchased[i]+paris.purchased[i]+lima.purchased[i]))
+
+
+
 
 }
 
@@ -129,27 +131,82 @@ Stores.prototype.creaTetable=function(){
 }
 
 function lasTraw(){
+
     let raws=document.createElement('tr')
     table.appendChild(raws);
 
-for(let i=0;i<hours.length;i++){
- 
-
-
-    
-    if(i==0){
+        let tot=0;
         let td=document.createElement('td');
         td.textContent='total';
         raws.appendChild(td);
+       for(let i=0;i<hours.length;i++){
+        //   let td1=document.createElement('td');
+          let totalfeachhour=0;
+          for(let h=0;h<shopss.length;h++){
+          
+              totalfeachhour+=shopss[h].purchased[i];
+              
+            //   td1.textContent=sum4;
+          }
+          let footertd=document.createElement('td')
+          
+          raws.appendChild(footertd);
+          footertd.textContent=totalfeachhour;
+
+        //  let td=document.createElement('td');
+        //  td.textContent=totalPd[i];
+        //   raws.appendChild(td);
+
+        tot+=totalfeachhour;
+    
+     }
+
+
+     let td2=document.createElement('td');
+        td2.textContent=tot;
+        raws.appendChild(td2);
 
 
 
-    }
-    let td=document.createElement('td');
-    td.textContent=totalPd[i];
-    raws.appendChild(td);
+}
+function myFunction() {
+    document.getElementById("myTable").deleteRow(0);
+  }
 
 
+
+
+let form1=document.getElementById('form');
+form1.addEventListener('submit',AddStores);
+function AddStores(event){
+    
+
+    event.preventDefault();
+
+
+let storename2=event.target.storename.value;
+let minimum=event.target.min.value;
+let maximum=event.target.max.value;
+let avgcc=event.target.avg.value;
+let newstore=new Stores(storename2,minimum,maximum,avgcc);
+
+
+newstore.purchase();
+newstore.creaTetable();
+
+
+
+lasTraw();
+if(table.rows.length==(shopss.length+1)){
+    myFunction();
+}
+var x = table.rows.length;
+console.log(x);
+console.log(shopss.length);
+
+
+
+// if (table.rows.length)
 
 }
 
@@ -158,44 +215,42 @@ for(let i=0;i<hours.length;i++){
 
 
 
-}
 
 
 
 
 creatheader();
-let seattle=new Stores('seattle',12,60,6.5);
-
-seattle.purchase(12,5,6.5);
-
-seattle.creaTetable();
-
-let tokyo=new Stores('tokyo',2,3,4);
-tokyo.purchase(2,3,4.5);
-tokyo.creaTetable();
-
-let dubai=new Stores('dubai',20,60,2.3);
-dubai.purchase(20,60,2.3);
-dubai.creaTetable();
-
-let paris=new Stores('paris',70,80,3);
-paris.purchase(70,80,3);
-paris.creaTetable();
-
-let lima=new Stores('lima',20,30,5);
-lima.purchase(20,30,5);
-lima.creaTetable();
-
-toTalpd();
-console.log();
-lasTraw();
-console.log(totalPd);
-console.log(charic);
 
 
 
 
+// let seattle=new Stores('seattle',12,60,6.5);
+
+// seattle.purchase(12,5,6.5);
+
+// seattle.creaTetable();
+
+// let tokyo=new Stores('tokyo',2,3,4);
+// tokyo.purchase(2,3,4.5);
+// tokyo.creaTetable();
+
+// let dubai=new Stores('dubai',20,60,2.3);
+// dubai.purchase(20,60,2.3);
+// dubai.creaTetable();
+
+// let paris=new Stores('paris',70,80,3);
+// paris.purchase(70,80,3);
+// paris.creaTetable();
+
+// let lima=new Stores('lima',20,30,5);
+// lima.purchase(20,30,5);
+// lima.creaTetable();
+
+// toTalpd();
+// console.log();
+// lasTraw();
+// console.log(totalPd);
+// console.log(charic);
 
 
 
-console.log(seattle.purchased);
