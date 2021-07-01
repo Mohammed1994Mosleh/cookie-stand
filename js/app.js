@@ -21,10 +21,11 @@ function Stores (Name, minCust, maxCust, avgC) {
     
 }
 
-Stores.prototype.purchase=function(){
+Stores.prototype.purchase=function(minCust,maxCust,avgC){
     for(let i=0;i<hours.length;i++){
-  
-    this.purchased.push( Math.floor(Math.random() * (this.maxCust - this.minCust + 1) + this.minCust)*this.avgC);
+        let p1;
+        p1 = (Math.floor(Math.random() * ( this.maxCust - this.minCust + 1) + this.minCust))*avgC;
+        this.purchased.push(p1);
     this.sum+=this.purchased[i];
 
     }
@@ -132,7 +133,7 @@ Stores.prototype.creaTetable=function(){
 
 function lasTraw(){
 
-    let raws=document.createElement('tr')
+    let raws=document.createElement('tfoot')
     table.appendChild(raws);
 
         let tot=0;
@@ -140,22 +141,18 @@ function lasTraw(){
         td.textContent='total';
         raws.appendChild(td);
        for(let i=0;i<hours.length;i++){
-        //   let td1=document.createElement('td');
           let totalfeachhour=0;
           for(let h=0;h<shopss.length;h++){
           
               totalfeachhour+=shopss[h].purchased[i];
               
-            //   td1.textContent=sum4;
+           
           }
           let footertd=document.createElement('td')
           
           raws.appendChild(footertd);
           footertd.textContent=totalfeachhour;
 
-        //  let td=document.createElement('td');
-        //  td.textContent=totalPd[i];
-        //   raws.appendChild(td);
 
         tot+=totalfeachhour;
     
@@ -169,9 +166,6 @@ function lasTraw(){
 
 
 }
-function myFunction() {
-    document.getElementById("myTable").deleteRow(0);
-  }
 
 
 
@@ -179,43 +173,27 @@ function myFunction() {
 let form1=document.getElementById('form');
 form1.addEventListener('submit',AddStores);
 function AddStores(event){
+
     
 
     event.preventDefault();
 
-
+   
+   
 let storename2=event.target.storename.value;
-let minimum=event.target.min.value;
-let maximum=event.target.max.value;
-let avgcc=event.target.avg.value;
+let minimum=parseInt (event.target.min.value);
+let maximum=parseInt  (event.target.max.value);
+let avgcc=parseInt( event.target.avg.value);
 let newstore=new Stores(storename2,minimum,maximum,avgcc);
+newstore.purchase(minimum,maximum,avgcc);
 
-
-newstore.purchase();
 newstore.creaTetable();
 
+console.log(typeof minimum);
 
 
-lasTraw();
-if(table.rows.length==(shopss.length+1)){
-    myFunction();
-}
-var x = table.rows.length;
-console.log(x);
-console.log(shopss.length);
-
-
-
-// if (table.rows.length)
 
 }
-
-
-
-
-
-
-
 
 
 
@@ -223,28 +201,33 @@ creatheader();
 
 
 
+let seattle=new Stores('seattle',12,60,6.5);
 
-// let seattle=new Stores('seattle',12,60,6.5);
+seattle.purchase(12,5,6.5);
 
-// seattle.purchase(12,5,6.5);
+seattle.creaTetable();
 
-// seattle.creaTetable();
+let tokyo=new Stores('tokyo',2,3,4);
+tokyo.purchase(2,3,4.5);
+tokyo.creaTetable();
 
-// let tokyo=new Stores('tokyo',2,3,4);
-// tokyo.purchase(2,3,4.5);
-// tokyo.creaTetable();
+let dubai=new Stores('dubai',20,60,2.3);
+dubai.purchase(20,60,2.3);
+dubai.creaTetable();
 
-// let dubai=new Stores('dubai',20,60,2.3);
-// dubai.purchase(20,60,2.3);
-// dubai.creaTetable();
+let paris=new Stores('paris',70,80,3);
+paris.purchase(70,80,3);
+paris.creaTetable();
 
-// let paris=new Stores('paris',70,80,3);
-// paris.purchase(70,80,3);
-// paris.creaTetable();
+let lima=new Stores('lima',20,30,5);
+lima.purchase(20,30,5);
+lima.creaTetable();
 
-// let lima=new Stores('lima',20,30,5);
-// lima.purchase(20,30,5);
-// lima.creaTetable();
+
+
+
+lasTraw();
+
 
 // toTalpd();
 // console.log();
