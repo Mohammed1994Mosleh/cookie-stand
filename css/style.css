@@ -48,12 +48,17 @@ text-align: center;
 margin: auto;
 
 }
-table tr td,th{
+table, tr ,td,th{
 
     padding: 10px;
-    color: tomato;
+    color: #0A1931;
 
 }
+td{
+
+    text-align: center;
+}
+
 table{
 border: 1px solid;
 width: 50%;
@@ -64,3 +69,6 @@ width: 50%;
 
 }
 
+a{
+    text-decoration: none;
+}
