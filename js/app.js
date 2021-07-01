@@ -21,10 +21,11 @@ function Stores (Name, minCust, maxCust, avgC) {
     
 }
 
-Stores.prototype.purchase=function(){
+Stores.prototype.purchase=function(minCust,maxCust,avgC){
     for(let i=0;i<hours.length;i++){
-  
-    this.purchased.push( Math.floor(Math.random() * (this.maxCust - this.minCust + 1) + this.minCust)*this.avgC);
+        let p1;
+        p1 = (Math.floor(Math.random() * (this.maxCust - this.minCust + 1) + this.minCust))*avgC;
+        this.purchased.push(p1);
     this.sum+=this.purchased[i];
 
     }
@@ -132,7 +133,7 @@ Stores.prototype.creaTetable=function(){
 
 function lasTraw(){
 
-    let raws=document.createElement('tr')
+    let raws=document.createElement('tfoot')
     table.appendChild(raws);
 
         let tot=0;
@@ -140,22 +141,18 @@ function lasTraw(){
         td.textContent='total';
         raws.appendChild(td);
        for(let i=0;i<hours.length;i++){
-        //   let td1=document.createElement('td');
           let totalfeachhour=0;
           for(let h=0;h<shopss.length;h++){
           
               totalfeachhour+=shopss[h].purchased[i];
               
-            //   td1.textContent=sum4;
+           
           }
           let footertd=document.createElement('td')
           
           raws.appendChild(footertd);
           footertd.textContent=totalfeachhour;
 
-        //  let td=document.createElement('td');
-        //  td.textContent=totalPd[i];
-        //   raws.appendChild(td);
 
         tot+=totalfeachhour;
     
@@ -169,9 +166,6 @@ function lasTraw(){
 
 
 }
-function myFunction() {
-    document.getElementById("myTable").deleteRow(0);
-  }
 
 
 
@@ -179,48 +173,35 @@ function myFunction() {
 let form1=document.getElementById('form');
 form1.addEventListener('submit',AddStores);
 function AddStores(event){
+
     
 
     event.preventDefault();
 
-
+   
+   
 let storename2=event.target.storename.value;
 let minimum=event.target.min.value;
 let maximum=event.target.max.value;
 let avgcc=event.target.avg.value;
 let newstore=new Stores(storename2,minimum,maximum,avgcc);
+newstore.purchase(minimum,maximum,avgcc);
 
-
-newstore.purchase();
 newstore.creaTetable();
 
 
 
-lasTraw();
-if(table.rows.length==(shopss.length+1)){
-    myFunction();
-}
-var x = table.rows.length;
-console.log(x);
-console.log(shopss.length);
 
-
-
-// if (table.rows.length)
 
 }
-
-
-
-
-
-
-
 
 
 
 creatheader();
 
+
+
+lasTraw();
 
 
 
