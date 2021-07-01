@@ -7,6 +7,7 @@ let shopss=[];
 let totalPd=[];
 let sum2=0;
 
+
 function Stores (Name, minCust, maxCust, avgC) {
     
     this.Name=Name;
@@ -20,13 +21,16 @@ function Stores (Name, minCust, maxCust, avgC) {
 
     
 }
-
 Stores.prototype.purchase=function(minCust,maxCust,avgC){
+    let p1;
+
+    
     for(let i=0;i<hours.length;i++){
-        let p1;
-        p1 = (Math.floor(Math.random() * ( this.maxCust - this.minCust + 1) + this.minCust))*avgC;
+       
+        p1 = Math.floor((Math.random() * ( this.maxCust - this.minCust + 1) + this.minCust)*this.avgC);
         this.purchased.push(p1);
     this.sum+=this.purchased[i];
+    console.log(p1);
 
     }
 }
@@ -188,9 +192,9 @@ let newstore=new Stores(storename2,minimum,maximum,avgcc);
 newstore.purchase(minimum,maximum,avgcc);
 
 newstore.creaTetable();
+lasTraw();
 
-console.log(typeof minimum);
-
+td.removeChild(td.lastChild);
 
 
 }
