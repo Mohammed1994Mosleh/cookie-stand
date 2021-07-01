@@ -50,7 +50,7 @@ margin: auto;
 }
 table tr td,th{
 
-    padding: 30px;
+    padding: 10px;
     color: tomato;
 
 }
@@ -61,5 +61,6 @@ width: 50%;
 }
 #con{
     width: 50%;
+
 }
 
