@@ -134,10 +134,11 @@ Stores.prototype.creaTetable=function(){
 
 
 }
+let raws=document.createElement('tfoot')
 
 function lasTraw(){
 
-    let raws=document.createElement('tfoot')
+    // raws.setAttribute
     table.appendChild(raws);
 
         let tot=0;
@@ -192,6 +193,7 @@ let newstore=new Stores(storename2,minimum,maximum,avgcc);
 newstore.purchase(minimum,maximum,avgcc);
 
 newstore.creaTetable();
+raws.textContent="";
 lasTraw();
 
 td.removeChild(td.lastChild);
